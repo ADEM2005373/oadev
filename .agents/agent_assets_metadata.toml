@@ -1,0 +1,26 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "v2TjXtjla5jN3cOlhTXc9"
+uri = "file://artifacts/dev-studio/src/assets/images/hero-bg.png"
+type = "image"
+title = "Hero abstract 3d glass green"
+
+[[generated]]
+id = "fKy0WQO4cx_vJ38FKVn3L"
+uri = "file://artifacts/dev-studio/src/assets/images/project-1.png"
+type = "image"
+title = "SaaS financial dashboard UI"
+
+[[generated]]
+id = "hIZysqMoLKMr0EEVkzNvC"
+uri = "file://artifacts/dev-studio/src/assets/images/project-2.png"
+type = "image"
+title = "AI node graph interface"
+
+[[generated]]
+id = "1l37IdyHK4wzD8-aQeFx4"
+uri = "file://artifacts/dev-studio/src/assets/images/team.png"
+type = "image"
+title = "Moody Brooklyn tech studio"
