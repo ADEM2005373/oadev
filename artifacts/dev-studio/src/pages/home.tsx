@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Terminal, Code2, Cpu, Database, Zap, Layers, Server, ShieldCheck, ChevronRight, CheckCircle2, HelpCircle, ArrowUpRight } from "lucide-react";
+import { ArrowRight, Terminal, Code2, Cpu, Database, Zap, Layers, Server, ShieldCheck, ChevronRight, CheckCircle2, HelpCircle, ArrowUpRight, Palette, Briefcase, Wrench, Brain, Box, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -69,7 +69,7 @@ export default function Home() {
             <div className="w-6 h-6 bg-primary rounded-sm rotate-45 flex items-center justify-center group-hover:rotate-90 transition-transform duration-500">
               <div className="w-2 h-2 bg-background -rotate-45 group-hover:-rotate-90 transition-transform duration-500" />
             </div>
-            <span className="font-display font-bold text-lg tracking-tight">Helix Labs</span>
+            <span className="font-display font-bold text-lg tracking-tight">OA-DEV</span>
           </a>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-muted-foreground">
             <a href="#services" className="hover:text-primary transition-colors">Services</a>
@@ -106,15 +106,15 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              Accepting new clients for Q3
+              New studio · Founded 2 months ago · Open for projects
             </motion.div>
             
             <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold font-display leading-[1.05] tracking-tighter mb-8">
-              We build systems that <span className="text-primary italic font-light">scale</span>, not prototypes that break.
+              Fresh studio. <span className="text-primary italic font-light">Serious</span> code.
             </motion.h1>
             
             <motion.p variants={fadeIn} className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 leading-relaxed font-light">
-              A boutique engineering studio in Brooklyn. We partner with ambitious founders to engineer high-performance web platforms, SaaS products, and AI automation infrastructure.
+              OA-DEV is a young development studio offering web design, web & AI development, software systems, IT services, and digital consulting. We are 2 months in, hungry, and building real products for real clients.
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
@@ -134,9 +134,9 @@ export default function Home() {
       {/* Logos */}
       <section className="py-12 border-y border-border/50 bg-white/[0.01]">
         <div className="container mx-auto px-6 overflow-hidden">
-          <p className="text-xs text-center text-muted-foreground font-mono uppercase tracking-widest mb-8">Trusted by engineering teams at</p>
+          <p className="text-xs text-center text-muted-foreground font-mono uppercase tracking-widest mb-8">Building trust, one project at a time</p>
           <div className="flex flex-wrap justify-center gap-10 md:gap-20 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-            {["Acme Corp", "Nexus Data", "Ozone", "Vertex AI", "Polymath", "Quantum"].map((name, i) => (
+            {["Local Bistro", "NorthLine", "Studio One", "Fleet Co.", "Ember", "Atlas"].map((name, i) => (
               <motion.div 
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -163,28 +163,43 @@ export default function Home() {
             className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6"
           >
             <div className="max-w-2xl">
-              <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">Capabilities</h2>
-              <h3 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Technical depth across the stack.</h3>
+              <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">Services</h2>
+              <h3 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Everything your project needs, under one roof.</h3>
             </div>
-            <p className="text-muted-foreground max-w-md text-lg">We don't do marketing sites or templates. We write custom code for complex business problems.</p>
+            <p className="text-muted-foreground max-w-md text-lg">From the first wireframe to the last deployed line of code — design, development, AI, and IT support, all handled by OA-DEV.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: <Terminal className="h-8 w-8 text-primary" />,
-                title: "SaaS & Web Platforms",
-                desc: "Production-ready web applications built with React, Next.js, and Node. Architected for scale, speed, and maintainability from day one."
+                icon: <Palette className="h-8 w-8 text-primary" />,
+                title: "Web Design",
+                desc: "Modern, responsive, and conversion-focused interfaces. Wireframes, mockups, and pixel-perfect UI crafted for your brand."
               },
               {
-                icon: <Cpu className="h-8 w-8 text-primary" />,
-                title: "AI Infrastructure",
-                desc: "Custom LLM integrations, RAG pipelines, and automated workflows. We turn AI research papers into reliable production systems."
+                icon: <Code2 className="h-8 w-8 text-primary" />,
+                title: "Web Development",
+                desc: "Custom websites, landing pages, dashboards, and e-commerce built with React, Next.js, and modern frameworks."
               },
               {
-                icon: <Database className="h-8 w-8 text-primary" />,
-                title: "Data Engineering",
-                desc: "High-throughput data pipelines, real-time analytics dashboards, and robust backend architectures that don't fall over under load."
+                icon: <Brain className="h-8 w-8 text-primary" />,
+                title: "AI Development",
+                desc: "Chatbots, LLM integrations, automation flows, and AI-powered features tailored to your business."
+              },
+              {
+                icon: <Box className="h-8 w-8 text-primary" />,
+                title: "Software & Systems",
+                desc: "Custom internal tools, management software, and back-office systems that fit how you actually work."
+              },
+              {
+                icon: <Network className="h-8 w-8 text-primary" />,
+                title: "IT & Information Services",
+                desc: "Hosting, deployment, domain setup, email, and ongoing technical maintenance — your IT department on call."
+              },
+              {
+                icon: <Briefcase className="h-8 w-8 text-primary" />,
+                title: "Tech Consulting",
+                desc: "Architecture reviews, stack selection, and digital strategy. Honest advice before you spend on the wrong solution."
               }
             ].map((service, i) => (
               <motion.div 
@@ -375,26 +390,26 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">The Studio</h2>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-8">Engineers, not agencies.</h3>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-8">Young studio, full energy.</h3>
               <div className="space-y-6 text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
                 <p>
-                  Most agencies operate like assembly lines, handing your vision down a chain of account managers, designers, and junior devs until it barely resembles the original idea.
+                  OA-DEV launched 2 months ago with a simple idea: most small businesses don't need a giant agency — they need one team that genuinely cares about their project.
                 </p>
                 <p>
-                  We are a small, senior team based in Brooklyn. When you work with Helix Labs, you speak directly with the engineers architecting your system. No bloat, no middle-men.
+                  We are small, focused, and direct. When you work with us, you talk to the people actually writing your code and designing your screens. No layers, no middle-men, no upsells.
                 </p>
                 <p>
-                  We take pride in writing clean, performant code. We obsess over edge cases, database indexing, and network waterfalls so you don't have to. We treat your product like it's our own.
+                  We're new, and that means we work harder. Every project we take on is a chance to prove ourselves, so we treat it like our own product.
                 </p>
               </div>
               <div className="mt-10 grid grid-cols-2 gap-8 pt-10 border-t border-border">
                 <div>
-                  <div className="text-4xl font-display font-bold text-foreground mb-2">12+</div>
-                  <div className="text-sm font-mono text-muted-foreground uppercase">Years Experience</div>
+                  <div className="text-4xl font-display font-bold text-foreground mb-2">2 mo</div>
+                  <div className="text-sm font-mono text-muted-foreground uppercase">Studio Age</div>
                 </div>
                 <div>
-                  <div className="text-4xl font-display font-bold text-foreground mb-2">40+</div>
-                  <div className="text-sm font-mono text-muted-foreground uppercase">Products Shipped</div>
+                  <div className="text-4xl font-display font-bold text-foreground mb-2">100%</div>
+                  <div className="text-sm font-mono text-muted-foreground uppercase">Founder-led work</div>
                 </div>
               </div>
             </motion.div>
@@ -414,8 +429,8 @@ export default function Home() {
                     <svg key={i} className="inline-block w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                   ))}
                 </div>
-                <p className="font-display font-bold text-xl md:text-2xl mb-4">"They saved us 6 months of runway. Period."</p>
-                <p className="text-sm text-muted-foreground font-mono">— Sarah Jenkins, CTO at Nexus</p>
+                <p className="font-display font-bold text-xl md:text-2xl mb-4">"Fast, friendly, and the site looks better than I imagined."</p>
+                <p className="text-sm text-muted-foreground font-mono">— Sarah J., Local Business Owner</p>
               </div>
             </motion.div>
           </div>
@@ -433,20 +448,24 @@ export default function Home() {
           <Accordion type="single" collapsible className="w-full">
             {[
               {
-                q: "Do you work with early-stage startups?",
-                a: "Yes, provided you have funding or revenue. We typically partner with Seed to Series B startups that need senior engineering velocity but aren't ready to hire a full internal team yet."
+                q: "You're a new studio — should I trust you with my project?",
+                a: "Fair question. We're 2 months old, but we're transparent about it. We work fast, communicate daily, and price our first projects fairly so you take less risk on us. Every client we land now is one we plan to keep for years."
               },
               {
-                q: "How do you price your projects?",
-                a: "We work on a fixed-bid basis for well-scoped projects, or a weekly retainer for ongoing product development. Our minimum engagement is $25,000. We don't do hourly billing."
+                q: "What kinds of projects do you take on?",
+                a: "Web design and development, AI integrations, custom software and management systems, IT and hosting setup, and digital consulting. From a one-page site for a local shop to a full SaaS MVP — if it's on the web, we can build it."
               },
               {
-                q: "What is your typical tech stack?",
-                a: "We default to Next.js/React on the frontend, Node.js or Python on the backend, and PostgreSQL for data. For AI work, we use OpenAI, Anthropic, Pinecone, and LangChain. We choose boring, scalable tech over hype."
+                q: "How much does a project cost?",
+                a: "It depends on scope. Simple websites start small, custom software and AI projects cost more. Tell us what you need in the form below and we'll send back an honest, itemized quote within 24 hours — no obligation."
               },
               {
-                q: "Do you offer design services?",
-                a: "We are an engineering-first studio. While we handle technical UI/UX implementation and systems design, for highly branded marketing sites we recommend working with a dedicated brand agency."
+                q: "Which technologies do you use?",
+                a: "On the web we use React, Next.js, and Node.js. For AI we work with OpenAI, Anthropic, and modern automation tools. For hosting and IT we set up cloud infrastructure on Vercel, AWS, and similar providers. We pick the right tool for your project, not the trendiest one."
+              },
+              {
+                q: "Do you offer ongoing maintenance after launch?",
+                a: "Yes. We offer monthly support packages that cover bug fixes, updates, hosting, security patches, and small feature requests — so your project keeps running smoothly long after launch."
               }
             ].map((faq, i) => (
               <AccordionItem key={i} value={`item-${i}`} className="border-border">
@@ -472,19 +491,19 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 leading-[0.9]">Let's build<br/>something <span className="italic font-light">real.</span></h2>
+              <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 leading-[0.9]">Let's start<br/>your <span className="italic font-light">project.</span></h2>
               <p className="text-xl md:text-2xl opacity-80 mb-12 max-w-md font-medium leading-snug">
-                Tell us about your technical challenges. We'll tell you honestly if we're the right team to solve them.
+                Tell us what you need — a website, an app, an AI tool, or just advice. We'll get back to you within 24 hours with an honest plan.
               </p>
               
               <div className="space-y-6">
                 <div className="flex items-center gap-4 border-b border-primary-foreground/10 pb-6">
                   <div className="w-3 h-3 bg-primary-foreground rounded-none" />
-                  <span className="font-mono text-base uppercase font-bold tracking-wider">hello@helixlabs.dev</span>
+                  <span className="font-mono text-base uppercase font-bold tracking-wider">hello@oa-dev.com</span>
                 </div>
                 <div className="flex items-center gap-4 border-b border-primary-foreground/10 pb-6">
                   <div className="w-3 h-3 bg-primary-foreground rounded-none" />
-                  <span className="font-mono text-base uppercase font-bold tracking-wider">Brooklyn, NY</span>
+                  <span className="font-mono text-base uppercase font-bold tracking-wider">Open studio · Online</span>
                 </div>
               </div>
             </motion.div>
@@ -547,9 +566,11 @@ export default function Home() {
                         className="w-full bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 px-4 outline-none appearance-none text-base"
                       >
                         <option value="" disabled>Select a range</option>
-                        <option value="25-50k">$25k - $50k</option>
-                        <option value="50-100k">$50k - $100k</option>
-                        <option value="100k+">$100k+</option>
+                        <option value="under-1k">Under $1k</option>
+                        <option value="1-5k">$1k - $5k</option>
+                        <option value="5-15k">$5k - $15k</option>
+                        <option value="15k+">$15k+</option>
+                        <option value="not-sure">Not sure yet</option>
                       </select>
                     </div>
 
@@ -586,7 +607,7 @@ export default function Home() {
             <div className="w-5 h-5 bg-primary rounded-sm rotate-45 flex items-center justify-center">
               <div className="w-1.5 h-1.5 bg-background -rotate-45" />
             </div>
-            <span className="font-display font-bold tracking-tight text-lg">Helix Labs © {new Date().getFullYear()}</span>
+            <span className="font-display font-bold tracking-tight text-lg">OA-DEV © {new Date().getFullYear()}</span>
           </div>
           <div className="flex gap-8 text-sm text-muted-foreground font-mono uppercase tracking-wider">
             <a href="#" className="hover:text-primary transition-colors">GitHub</a>
