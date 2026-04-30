@@ -56,7 +56,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-black">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden selection:bg-primary selection:text-primary-foreground">
       {/* Navbar */}
       <motion.nav 
         initial={{ y: -100 }}
@@ -65,9 +65,13 @@ export default function Home() {
         className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md"
       >
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-2 group">
-            <div className="w-6 h-6 bg-primary rounded-sm rotate-45 flex items-center justify-center group-hover:rotate-90 transition-transform duration-500">
-              <div className="w-2 h-2 bg-background -rotate-45 group-hover:-rotate-90 transition-transform duration-500" />
+          <a href="#" className="flex items-center gap-3 group">
+            <div className="p-1 rounded-md bg-primary/5 border border-primary/15 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+              <img
+                src="/logo.png"
+                alt="OA-DEV"
+                className="w-16 h-16 object-contain opacity-100 saturate-125 contrast-110 drop-shadow-[0_0_22px_rgba(46,101,149,0.7)]"
+              />
             </div>
             <span className="font-display font-bold text-lg tracking-tight">OA-DEV</span>
           </a>
@@ -78,7 +82,7 @@ export default function Home() {
             <a href="#team" className="hover:text-primary transition-colors">Studio</a>
             <a href="#faq" className="hover:text-primary transition-colors">FAQ</a>
           </div>
-          <Button asChild variant="outline" className="border-primary/20 text-primary hover:bg-primary hover:text-black transition-all rounded-none h-10 px-6">
+          <Button asChild variant="outline" className="border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all rounded-none h-10 px-6">
             <a href="#contact">Start a Project</a>
           </Button>
         </div>
@@ -118,7 +122,7 @@ export default function Home() {
             </motion.p>
             
             <motion.div variants={fadeIn} className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-primary text-black hover:bg-primary/90 text-base h-14 px-8 rounded-none font-bold" asChild>
+              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-base h-14 px-8 rounded-none font-bold" asChild>
                 <a href="#contact">
                   Book a Discovery Call <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
@@ -362,7 +366,7 @@ export default function Home() {
 
       {/* Tech Stack Marquee */}
       <section className="py-16 border-y border-border/50 overflow-hidden bg-primary text-primary-foreground relative">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
         <div className="flex w-[200%] animate-[marquee_20s_linear_infinite]">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center font-display text-2xl md:text-4xl font-bold uppercase tracking-tighter">
@@ -483,7 +487,7 @@ export default function Home() {
 
       {/* Contact / CTA */}
       <section id="contact" className="py-24 md:py-32 px-6 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
         <div className="container mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
             <motion.div 
@@ -525,7 +529,7 @@ export default function Home() {
                   </p>
                   <Button 
                     variant="outline" 
-                    className="mt-4 rounded-none border-border hover:bg-primary hover:text-black"
+                    className="mt-4 rounded-none border-border hover:bg-primary hover:text-primary-foreground"
                     onClick={() => setIsSuccess(false)}
                   >
                     Submit another
@@ -588,7 +592,7 @@ export default function Home() {
                     <Button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full h-16 bg-primary text-black hover:bg-white rounded-none text-lg font-bold transition-colors mt-4"
+                      className="w-full h-16 bg-primary text-primary-foreground hover:bg-primary/90 rounded-none text-lg font-bold transition-colors mt-4"
                     >
                       {isSubmitting ? "Sending..." : "Submit Inquiry"} {!isSubmitting && <ArrowUpRight className="ml-2 w-6 h-6" />}
                     </Button>
@@ -604,8 +608,12 @@ export default function Home() {
       <footer className="py-12 px-6 border-t border-border bg-background">
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-3 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
-            <div className="w-5 h-5 bg-primary rounded-sm rotate-45 flex items-center justify-center">
-              <div className="w-1.5 h-1.5 bg-background -rotate-45" />
+            <div className="p-1 rounded-md bg-primary/5 border border-primary/15 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
+              <img
+                src="/logo.png"
+                alt="OA-DEV"
+                className="w-14 h-14 object-contain opacity-100 saturate-125 contrast-110 drop-shadow-[0_0_20px_rgba(46,101,149,0.65)]"
+              />
             </div>
             <span className="font-display font-bold tracking-tight text-lg">OA-DEV © {new Date().getFullYear()}</span>
           </div>
