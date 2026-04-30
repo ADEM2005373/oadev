@@ -1,11 +1,13 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { ArrowRight, Terminal, Code2, Cpu, Database, Zap, Layers, Server, ShieldCheck, ChevronRight, CheckCircle2, HelpCircle, ArrowUpRight, Palette, Briefcase, Wrench, Brain, Box, Network } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { sendInquiry } from "@/lib/contact";
 
 // Generated images
 import heroBg from "@/assets/images/hero-bg.png";
@@ -13,18 +15,41 @@ import project1 from "@/assets/images/project-1.png";
 import project2 from "@/assets/images/project-2.png";
 import teamBg from "@/assets/images/team.png";
 
-const fadeIn = {
+const appEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeIn: Variants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: appEase } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: { staggerChildren: 0.1 }
   }
 };
+
+const signals = [
+  {
+    ref: "Ref. 01",
+    date: "Apr 2026",
+    title: "Security-first builds",
+    desc: "Sensible defaults, OWASP-minded reviews, and secure deployment practices from day one."
+  },
+  {
+    ref: "Ref. 02",
+    date: "Apr 2026",
+    title: "Performance budgets",
+    desc: "Fast by design: image discipline, caching, and measurable performance targets on every release."
+  },
+  {
+    ref: "Ref. 03",
+    date: "Apr 2026",
+    title: "Clean UX systems",
+    desc: "Consistent components, accessible patterns, and brand-aligned visuals that feel premium."
+  }
+];
 
 export default function Home() {
   const { toast } = useToast();
@@ -41,18 +66,26 @@ export default function Home() {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      await sendInquiry(formState);
       setIsSuccess(true);
       setFormState({ name: "", email: "", project: "", budget: "" });
       toast({
         title: "Inquiry received",
         description: "We'll be in touch within 24 hours.",
       });
-    }, 1500);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Failed to send inquiry";
+      toast({
+        title: "Could not send",
+        description: message,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -64,7 +97,7 @@ export default function Home() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md"
       >
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3 group">
             <div className="p-1 rounded-md bg-primary/5 border border-primary/15 shadow-[0_0_0_1px_rgba(255,255,255,0.04)]">
               <img
@@ -110,7 +143,7 @@ export default function Home() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
-              New studio · Founded 2 months ago · Open for projects
+              OA-DEV Studio · v2026 · Open for projects
             </motion.div>
             
             <motion.h1 variants={fadeIn} className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold font-display leading-[1.05] tracking-tighter mb-8">
@@ -135,23 +168,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logos */}
-      <section className="py-12 border-y border-border/50 bg-white/[0.01]">
-        <div className="container mx-auto px-6 overflow-hidden">
-          <p className="text-xs text-center text-muted-foreground font-mono uppercase tracking-widest mb-8">Building trust, one project at a time</p>
-          <div className="flex flex-wrap justify-center gap-10 md:gap-20 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-            {["Local Bistro", "NorthLine", "Studio One", "Fleet Co.", "Ember", "Atlas"].map((name, i) => (
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                key={name} 
-                className="text-xl font-display font-bold tracking-tight"
-              >
-                {name}
-              </motion.div>
-            ))}
+      {/* Signals */}
+      <section className="py-20 md:py-24 px-6 border-y border-border/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(46,101,149,0.18)_0%,transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[url('/noise.svg')] opacity-15 mix-blend-overlay pointer-events-none" />
+        <div className="container mx-auto relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-4">
+              <p className="text-xs font-mono uppercase tracking-widest text-primary mb-4">01 / Signals</p>
+              <h3 className="text-3xl md:text-4xl font-display font-bold tracking-tight mb-4">Proof of work, in public.</h3>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                Short, practical updates about how we build: quality, performance, and product thinking.
+              </p>
+            </div>
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              {signals.map((item) => (
+                <motion.a
+                  key={item.ref}
+                  href="#contact"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="group border border-border bg-card/40 backdrop-blur p-6 hover:border-primary/50 transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">{item.ref}</span>
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground">{item.date}</span>
+                  </div>
+                  <h4 className="text-xl font-display font-bold tracking-tight mb-3 group-hover:text-primary transition-colors">
+                    {item.title}
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{item.desc}</p>
+                  <div className="inline-flex items-center text-sm font-mono uppercase tracking-widest text-primary">
+                    Talk to us <ChevronRight className="ml-1 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </motion.a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -167,7 +220,7 @@ export default function Home() {
             className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6"
           >
             <div className="max-w-2xl">
-              <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">Services</h2>
+              <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">02 / Services</h2>
               <h3 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Everything your project needs, under one roof.</h3>
             </div>
             <p className="text-muted-foreground max-w-md text-lg">From the first wireframe to the last deployed line of code — design, development, AI, and IT support, all handled by OA-DEV.</p>
@@ -234,7 +287,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">Process</h2>
+            <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">03 / Process</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold tracking-tight max-w-2xl">How we ship.</h3>
           </motion.div>
 
@@ -274,7 +327,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-16 md:mb-24"
           >
-            <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">Selected Work</h2>
+            <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">04 / Selected Work</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Shipped to production.</h3>
           </motion.div>
 
@@ -393,8 +446,8 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">The Studio</h2>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-8">Young studio, full energy.</h3>
+              <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">05 / The Studio</h2>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-8">Small team. Senior execution.</h3>
               <div className="space-y-6 text-lg md:text-xl text-muted-foreground font-light leading-relaxed">
                 <p>
                   OA-DEV launched 2 months ago with a simple idea: most small businesses don't need a giant agency — they need one team that genuinely cares about their project.
@@ -445,7 +498,7 @@ export default function Home() {
       <section id="faq" className="py-24 md:py-32 px-6 border-t border-border bg-white/[0.01]">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
-            <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">FAQ</h2>
+            <h2 className="text-sm font-mono text-primary mb-4 uppercase tracking-widest">06 / FAQ</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold tracking-tight">Common questions.</h3>
           </div>
           
@@ -495,9 +548,10 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
+              <p className="text-xs font-mono uppercase tracking-widest opacity-80 mb-6">07 / Contact</p>
               <h2 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold tracking-tighter mb-8 leading-[0.9]">Let's start<br/>your <span className="italic font-light">project.</span></h2>
               <p className="text-xl md:text-2xl opacity-80 mb-12 max-w-md font-medium leading-snug">
-                Tell us what you need — a website, an app, an AI tool, or just advice. We'll get back to you within 24 hours with an honest plan.
+                Tell us what you need — website, software, AI, or technical guidance. We respond within 24 hours with clear next steps.
               </p>
               
               <div className="space-y-6">
@@ -507,7 +561,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center gap-4 border-b border-primary-foreground/10 pb-6">
                   <div className="w-3 h-3 bg-primary-foreground rounded-none" />
-                  <span className="font-mono text-base uppercase font-bold tracking-wider">Open studio · Online</span>
+                  <span className="font-mono text-base uppercase font-bold tracking-wider">Open studio · Remote</span>
                 </div>
               </div>
             </motion.div>
@@ -527,8 +581,8 @@ export default function Home() {
                   <p className="text-muted-foreground text-lg max-w-xs">
                     Thanks for reaching out. One of our lead engineers will review your details and get back to you within 24 hours.
                   </p>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="mt-4 rounded-none border-border hover:bg-primary hover:text-primary-foreground"
                     onClick={() => setIsSuccess(false)}
                   >
@@ -538,35 +592,38 @@ export default function Home() {
               ) : (
                 <>
                   <h3 className="text-3xl font-display font-bold mb-8">Project Inquiry</h3>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <p className="text-muted-foreground text-base -mt-4">
+                    Fill the form and we’ll reply within 24 hours with clear next steps.
+                  </p>
+                  <form onSubmit={handleSubmit} className="space-y-6 mt-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-3">
                         <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Name</label>
-                        <Input 
-                          required 
+                        <Input
+                          required
                           value={formState.name}
-                          onChange={e => setFormState({...formState, name: e.target.value})}
-                          className="bg-card border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 text-base" 
+                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                          className="bg-card border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 text-base"
                         />
                       </div>
                       <div className="space-y-3">
                         <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Email</label>
-                        <Input 
-                          required 
+                        <Input
+                          required
                           type="email"
                           value={formState.email}
-                          onChange={e => setFormState({...formState, email: e.target.value})}
-                          className="bg-card border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 text-base" 
+                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                          className="bg-card border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 text-base"
                         />
                       </div>
                     </div>
-                    
+
                     <div className="space-y-3">
                       <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Budget Range</label>
-                      <select 
+                      <select
                         required
                         value={formState.budget}
-                        onChange={e => setFormState({...formState, budget: e.target.value})}
+                        onChange={(e) => setFormState({ ...formState, budget: e.target.value })}
                         className="w-full bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 px-4 outline-none appearance-none text-base"
                       >
                         <option value="" disabled>Select a range</option>
@@ -580,21 +637,22 @@ export default function Home() {
 
                     <div className="space-y-3">
                       <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Project Details</label>
-                      <Textarea 
+                      <Textarea
                         required
                         value={formState.project}
-                        onChange={e => setFormState({...formState, project: e.target.value})}
-                        className="bg-card border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none min-h-[150px] resize-none text-base p-4" 
+                        onChange={(e) => setFormState({ ...formState, project: e.target.value })}
+                        className="bg-card border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none min-h-[150px] resize-none text-base p-4"
                         placeholder="Tell us about the problem you're trying to solve..."
                       />
                     </div>
-                    
-                    <Button 
-                      type="submit" 
+
+                    <Button
+                      type="submit"
                       disabled={isSubmitting}
                       className="w-full h-16 bg-primary text-primary-foreground hover:bg-primary/90 rounded-none text-lg font-bold transition-colors mt-4"
                     >
-                      {isSubmitting ? "Sending..." : "Submit Inquiry"} {!isSubmitting && <ArrowUpRight className="ml-2 w-6 h-6" />}
+                      {isSubmitting ? "Sending..." : "Submit Inquiry"}{" "}
+                      {!isSubmitting && <ArrowUpRight className="ml-2 w-6 h-6" />}
                     </Button>
                   </form>
                 </>
