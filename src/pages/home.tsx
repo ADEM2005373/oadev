@@ -677,7 +677,7 @@ export default function Home() {
           <div className="flex gap-8 text-sm text-muted-foreground font-mono uppercase tracking-wider">
             <a href="https://github.com/OA-FOR-DEV" className="hover:text-primary transition-colors">GitHub</a>
             <a href="https://x.com/OAFORDEV" className="hover:text-primary transition-colors">Twitter</a>
-            <a href="www.linkedin.com/in/oa-dev-b41726407" className="hover:text-primary transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/oa-dev-b41726407/" className="hover:text-primary transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>
