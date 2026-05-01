@@ -557,7 +557,21 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="flex items-center gap-4 border-b border-primary-foreground/10 pb-6">
                   <div className="w-3 h-3 bg-primary-foreground rounded-none" />
-                  <span className="font-mono text-base uppercase font-bold tracking-wider">hello@oa-dev.com</span>
+                  <a
+                    href="mailto:oa.for.dev@gmail.com"
+                    className="font-mono text-base uppercase font-bold tracking-wider hover:opacity-80 transition-opacity"
+                  >
+                    oa.for.dev@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center gap-4 border-b border-primary-foreground/10 pb-6">
+                  <div className="w-3 h-3 bg-primary-foreground rounded-none" />
+                  <a
+                    href="tel:+21629763603"
+                    className="font-mono text-base uppercase font-bold tracking-wider hover:opacity-80 transition-opacity"
+                  >
+                    +216 29 763 603
+                  </a>
                 </div>
                 <div className="flex items-center gap-4 border-b border-primary-foreground/10 pb-6">
                   <div className="w-3 h-3 bg-primary-foreground rounded-none" />
@@ -618,22 +632,7 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="space-y-3">
-                      <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Budget Range</label>
-                      <select
-                        required
-                        value={formState.budget}
-                        onChange={(e) => setFormState({ ...formState, budget: e.target.value })}
-                        className="w-full bg-card border border-border focus:border-primary focus:ring-1 focus:ring-primary rounded-none h-14 px-4 outline-none appearance-none text-base"
-                      >
-                        <option value="" disabled>Select a range</option>
-                        <option value="under-1k">Under $1k</option>
-                        <option value="1-5k">$1k - $5k</option>
-                        <option value="5-15k">$5k - $15k</option>
-                        <option value="15k+">$15k+</option>
-                        <option value="not-sure">Not sure yet</option>
-                      </select>
-                    </div>
+                    
 
                     <div className="space-y-3">
                       <label className="text-xs font-mono text-muted-foreground uppercase tracking-wider">Project Details</label>
@@ -676,9 +675,9 @@ export default function Home() {
             <span className="font-display font-bold tracking-tight text-lg">OA-DEV © {new Date().getFullYear()}</span>
           </div>
           <div className="flex gap-8 text-sm text-muted-foreground font-mono uppercase tracking-wider">
-            <a href="#" className="hover:text-primary transition-colors">GitHub</a>
-            <a href="#" className="hover:text-primary transition-colors">Twitter</a>
-            <a href="#" className="hover:text-primary transition-colors">LinkedIn</a>
+            <a href="https://github.com/OA-FOR-DEV" className="hover:text-primary transition-colors">GitHub</a>
+            <a href="https://x.com/OAFORDEV" className="hover:text-primary transition-colors">Twitter</a>
+            <a href="www.linkedin.com/in/oa-dev-b41726407" className="hover:text-primary transition-colors">LinkedIn</a>
           </div>
         </div>
       </footer>
